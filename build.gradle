@@ -1,0 +1,66 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.ekayworks'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+ext {
+    queryDslVersion = '4.4.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.4'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.5.4'
+    implementation 'com.github.zhanhb:thymeleaf-layout-dialect:2.5.3'
+    implementation 'org.thymeleaf:thymeleaf-spring5:3.0.12.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
+    implementation 'org.springframework.boot:spring-boot-devtools'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:2.7.3'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.5.4'
+    implementation 'org.modelmapper:modelmapper:2.4.4'
+    implementation 'org.apache.commons:commons-text:1.9'
+    implementation 'com.mortennobel:java-image-scaling:0.8.6'
+    // QueryDSL
+    implementation ("com.querydsl:querydsl-jpa:${queryDslVersion}")
+    annotationProcessor ("com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
+    testImplementation ("com.querydsl:querydsl-jpa:${queryDslVersion}")
+    testAnnotationProcessor ("com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// 참조 https://jojoldu.tistory.com/372
+def generated='src/main/generated'
+sourceSets {
+    main.java.srcDirs += [ generated ]
+}
+
+// 자바 컴파일 할 경우에 Qfile 만들기
+tasks.withType(JavaCompile) {
+    options.annotationProcessorGeneratedSourcesDirectory = file(generated)
+}
+
+// clean 시에 generated 된 파일 삭제
+clean.doLast {
+    file(generated).deleteDir()
+}

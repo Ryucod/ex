@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:fragment="nav" class="row border-bottom">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+            </a>
+            <form role="search" class="navbar-form-custom" action="">
+            </form>
+        </div>
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+                <span class="m-r-sm text-muted welcome-message">Grace & Mercy Foundation Korea</span>
+            </li>
+            <li>
+                <a href="/login/logout" class="logout">
+                    <i class="fa fa-sign-out"></i> Log out
+                </a>
+            </li>
+        </ul>
+
+    </nav>
+</div>
+
+</body>
+</html>

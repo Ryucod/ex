@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Grace & Mercy Foundation Korea</title>
+
+    <section th:replace="~{layout/frag/css :: css}"></section>
+</head>
+
+<body class="gray-bg">
+
+<div id="wrapper">
+
+    <div id="form-page-wrapper" class="gray-bg">
+        <section layout:fragment="content">
+            <p>Content</p>
+        </section>
+    </div>
+
+</div>
+
+<section th:replace="~{layout/frag/js :: js}"></section>
+
+<script layout:fragment="script">
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Grace & Mercy Foundation Korea</title>
+</head>
+<body>
+
+<th:block th:fragment="menu" class="side-menu">
+    <nav class="light-navbar navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <img src="/img/logo.png" alt="로고" class="m-b p-0" style="margin-left: -12px;">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="block m-t-xs font-bold" th:text="${loginUser?.name}" th:if="${not #strings.isEmpty(loginUser?.name)}"></span>
+                            <span class="text-muted text-xs block" th:text="${loginUser?.email}" th:if="${not #strings.isEmpty(loginUser?.email)}"></span>
+                        </a>
+                    </div>
+                    <div class="logo-element">
+                        Grace & Mercy Foundation Korea
+                    </div>
+                </li>
+                <li>
+                    <a href="/admin"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">이미지변경</span><!--<span class="fa arrow"></span>--></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/mainsection">메인 이미지변경</a></li>
+                        <li><a href="/middlesection">사업과활동 이미지변경</a></li>
+                        <li><a href="/fundingsection">기금지원 이미지변경</a></li>
+                        <li><a href="/bottomsection">꼬리말 이미지변경</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-list"></i> <span class="nav-label">게시판 관리</span><!--<span class="fa arrow"></span>--></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/notice">공지사항</a></li>
+                        <li><a href="/recruit">채용</a></li>
+                        <li><a href="/qna">QnA</a></li>
+                    </ul>
+                </li>
+         <!--       <li>
+                    <a href="/article"><i class="fa fa-list"></i> <span class="nav-label">게시판 관리</span>&lt;!&ndash;<span class="fa arrow"></span>&ndash;&gt;</a>
+                </li>-->
+            </ul>
+        </div>
+    </nav>
+</th:block>
+
+
+</body>
+</html>

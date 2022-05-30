@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:float="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EkayWorks</title>
+    <section th:replace="~{layout/frag/css :: css}"></section>
+</head>
+<body class="gray-bg">
+
+<div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+        <div>
+            <img src="/img/login-logo.jpg" alt="로고" class="m-b p-0" style="margin-top: 100px; width: 400px;" />
+        </div>
+
+        <form class="m-t" role="form" method="post" onsubmit="return check()">
+            <div class="form-group" >
+                <input type="text" class="form-control" placeholder="아이디" name="loginId" required="">
+            </div>
+            <div class="form-group" >
+                <input type="text" class="form-control" placeholder="이름" name="name" required="">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="패스워드(영문 + 숫자로 8자리 이상)" id="password" name="password" required="">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="패스워드 확인" id="checkPw" name="checkPw" required="">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="이메일" name="email" required="">
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="주소" name="address" required="">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="전화번호" name="phone" required="">
+            </div>
+            <button type="submit" class="btn btn-warning block full-width m-b">저장</button>
+        </form>
+        </p>
+    </div>
+</div>
+<section th:replace="~{layout/frag/js :: js}"></section>
+</body>
+<script>
+    function check() {
+
+        const password = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/;
+        if(!password.test($("#password").val())) {
+            alert("비밀번호를 확인하세요");
+            $("#password").val("");
+            $("#password").focus();
+            return false;
+        }
+        if(!password.test($("#checkPw").val())) {
+            alert("비밀번호 재입력을 확인하세요");
+            $("#checkPw").val("");
+            $("#checkPw").focus();
+            return false;
+        }
+    }
+</script>
+</html>

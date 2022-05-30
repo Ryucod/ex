@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EkayWorks</title>
+    <section th:replace="~{layout/frag/css :: css}"></section>
+</head>
+<body class="gray-bg">
+
+<div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+        <div>
+            <img src="/img/login-logo.jpg" alt="로고" class="m-b p-0" style="margin-top: 100px; width: 400px;" />
+        </div>
+
+        <form class="m-t" role="form" method="post">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="아이디" name="loginId" required="">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="패스워드" name="password" required="">
+            </div>
+            <p th:if="${#fields.hasErrors('login')}" th:errorclass="loginerrormsg" th:errors="*{login}"></p>
+            <button type="submit" class="btn btn-warning block full-width m-b">로그인</button>
+        </form>
+            <button type="button" style="background-color: #0e9aef; border-color: #0e9aef;" onclick="location.href = 'join'"
+                    class="btn btn-warning block full-width m-b">회원가입</button>
+            <button type="button" style="background-color: whitesmoke; color: #0e9aef;" onclick="location.href = 'find'"
+                    class="btn btn-warning block full-width m-b">아이디/비밀번호 찾기</button>
+        <!-- Form -->
+<!--        <p class="ui-widget-content loginerrormsg" th:if="${notlogin==true}">-->
+<!--        </p>-->
+    </div>
+</div>
+<section th:replace="~{layout/frag/js :: js}"></section>
+</body>
+</html>

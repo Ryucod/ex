@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Grace & Mercy Foundation Korea</title>
+
+    <section th:replace="~{layout/frag/css :: css}"></section>
+
+    <style>
+        .sweet-alert h2 {
+        text-align: left;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.21);
+        margin: 0 0 28px;
+        font-weight: normal;
+        font-size: 20px;
+        }
+        .sweet-alert p {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .sweet-alert .cancel {
+            background-color: #1c84c6 !important;
+        }
+    </style>
+</head>
+
+<body class="light-skin">
+
+<div id="wrapper">
+
+    <th:block th:replace="~{layout/frag/menu :: menu}"></th:block>
+
+    <div id="page-wrapper" class="" style="background-color: #fcfcfc">
+
+        <div th:replace="~{layout/frag/nav :: nav}"></div>
+
+        <section layout:fragment="content">
+            <p>Content</p>
+        </section>
+
+    </div>
+</div>
+
+<section th:replace="~{layout/frag/js :: js}"></section>
+
+<script layout:fragment="script">
+</script>
+<script>
+    $(function () {
+        $(document).on('click', '.logout', (e) => {
+            e.preventDefault();
+            swal_confirm("로그아웃", "로그아웃 하시겠습니까?", "창닫기", "로그아웃", (e) => {
+                location.href="/login/logout";
+            });
+        });
+
+        let $currentUrl = window.location.pathname;
+        let $sidebarMenu = $('#side-menu');
+        let current = location.pathname;
+        if (current !== '/') {
+            $('ul.metismenu li a').each(function () {
+                if ($(this).attr('href') === current) {
+                    $(this).closest('li').addClass('active');
+                }
+            });
+
+            $('ul.metismenu .nav-second-level a').each(function () {
+                if ($(this).attr('href') === current) {
+                    $(this).parent().closest('li').addClass('active');
+                    $(this).closest('ul').addClass('in');
+                }
+            });
+
+            $('ul.metismenu .nav-third-level a').each(function () {
+                if ($(this).attr('href') === current) {
+                    $(this).closest('ul').addClass('in');
+                    $(this).closest('.nav-second-level').addClass('in');
+                }
+            });
+        } else {
+            $sidebarMenu.find('a[href="' + $currentUrl + '"]').parents('li').addClass('active');
+        }
+    });
+
+</script>
+</body>
+
+</html>

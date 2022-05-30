@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EkayWorks</title>
+    <section th:replace="~{layout/frag/css :: css}"></section>
+</head>
+<body class="gray-bg">
+
+<div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+        <div>
+            <img src="/img/login-logo.jpg" alt="로고" class="m-b p-0" style="margin-top: 100px; width: 400px;" />
+        </div>
+
+        <form class="m-t" role="form" method="post">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="이메일" name="email" required="">
+            </div>
+            <p th:if="${#fields.hasErrors('user')}" th:errorclass="errormsg" th:errors="*{user.email}"></p>
+            <br />
+            <p>새로 사용할 비밀번호를 입력해주세요</p>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="비밀번호" name="password" required="">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="비밀번호 확인" name="checkPw" required="">
+            </div>
+            <button type="submit" class="btn btn-warning block full-width m-b">저장</button><!--[[${user}]]-->
+            <p th:if="${#fields.hasErrors('user')}" th:errorclass="errormsg" th:errors="*{user}"></p>
+        </form>
+    </div>
+</div>
+<section th:replace="~{layout/frag/js :: js}"></section>
+</body>
+<script>
+    $(() => {
+        $(document).on('click', () => {
+            //제출시 alert
+            //이메일
+            //비밀번호
+            //비밀번호 확인
+            //비밀번호, 비밀번호 확인 일치하지 않을때
+
+        });
+    })
+</script>
+</html>

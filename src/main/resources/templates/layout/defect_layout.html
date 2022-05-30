@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Grace & Mercy Foundation Korea</title>
+
+  <section th:replace="~{layout/frag/css :: css}"></section>
+</head>
+
+<body>
+
+<div id="wrapper">
+
+  <th:block th:switch="${menu}">
+    <th:block th:case="office">
+      <div th:replace="~{layout/frag/menu :: defect-office-menu}"></div>
+    </th:block>
+    <th:block th:case="customer">
+      <div th:replace="~{layout/frag/menu :: defect-customer-menu}"></div>
+    </th:block>
+    <th:block th:case="partner">
+      <div th:replace="~{layout/frag/menu :: defect-partner-menu}"></div>
+    </th:block>
+  </th:block>
+
+  <div id="page-wrapper" class="gray-bg">
+
+    <div id="form-page-wrapper" class="gray-bg">
+      <section layout:fragment="content">
+        <p>Content</p>
+      </section>
+    </div>
+  </div>
+</div>
+
+<section th:replace="~{layout/frag/js :: js}"></section>
+
+<script layout:fragment="script">
+</script>
+
+<script>
+  $(document).ready(function () {
+    var $sidebarMenu = $('.defect-menu');
+    var $currentUrl = window.location.pathname;
+    // console.log("side::{}", $currentUrl);
+    $sidebarMenu.find('a[href="' + $currentUrl + '"]').parents('li').addClass('active');
+
+  })
+
+</script>
+
+</body>
+
+</html>

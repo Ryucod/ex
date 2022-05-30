@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Grace & Mercy Foundation Korea</title>
+
+    <section th:replace="~{layout/frag/css :: css}"></section>
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    <th:block th:replace="~{layout/frag/menu :: menu}"></th:block>
+
+    <div id="page-wrapper" class="gray-bg">
+
+        <div th:replace="~{layout/frag/nav :: nav}"></div>
+
+        <section layout:fragment="content">
+            <p>Content</p>
+        </section>
+
+    </div>
+</div>
+
+<section th:replace="~{layout/frag/js :: js}"></section>
+
+<script layout:fragment="script">
+</script>
+<script>
+    $(document).ready(function () {
+
+        let $currentUrl = window.location.pathname;
+        let $sidebarMenu = $('#side-menu');
+        let current = location.pathname;
+        if (current !== '/') {
+            $('ul.metismenu li a').each(function () {
+                if ($(this).attr('href') === current) {
+                    $(this).closest('li').addClass('active');
+                }
+            });
+
+            $('ul.metismenu .nav-second-level a').each(function () {
+                if ($(this).attr('href') === current) {
+                    $(this).parent().closest('li').addClass('active');
+                    $(this).closest('ul').addClass('in');
+                }
+            });
+
+            $('ul.metismenu .nav-third-level a').each(function () {
+                if ($(this).attr('href') === current) {
+                    $(this).closest('ul').addClass('in');
+                    $(this).closest('.nav-second-level').addClass('in');
+                }
+            });
+        } else {
+            $sidebarMenu.find('a[href="' + $currentUrl + '"]').parents('li').addClass('active');
+        }
+    });
+
+</script>
+</body>
+
+</html>
