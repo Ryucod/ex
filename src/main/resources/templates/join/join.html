@@ -17,8 +17,9 @@
 
         <form class="m-t" role="form" method="post" onsubmit="return check()">
             <div class="form-group" >
-                <input type="text" class="form-control" placeholder="아이디" name="loginId" required="">
+                <input type="text" class="form-control" placeholder="아이디" id="loginId" name="loginId" required="">
             </div>
+            <button type="button" class="btn btn-warning block full-width m-b" id="check" name="check">중복확인</button>
             <div class="form-group" >
                 <input type="text" class="form-control" placeholder="이름" name="name" required="">
             </div>
@@ -46,8 +47,39 @@
 <section th:replace="~{layout/frag/js :: js}"></section>
 </body>
 <script>
-    function check() {
+    $(function () {
+        let num = 0;
+        // let loginId = $('#loginId').val();
+        let checkId = function () {
+            const request = $.ajax({
+                url: "/check",
+                method: "POST",
+                data: {loginId},
+                dataType: "json"
+            });
+            request.done(function (data) {
+                console.log(loginId);
+                console.log(data);
+                if(data){
+                    alert("아이디 중복");
+                }else{
+                    alert("사용 가능");
+                    num++;
+                }
+            });
+            request.fail(function (jqXHR, textStatus) {
+                alert("Request failed: " + textStatus);
+            });
+        };
+        $('#check').click(function () {
+            loginId = $('#loginId').val();
+            if(num == 0){
+                checkId();
 
+            }
+        });
+    });
+    function check() {
         const password = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/;
         if(!password.test($("#password").val())) {
             alert("비밀번호를 확인하세요");

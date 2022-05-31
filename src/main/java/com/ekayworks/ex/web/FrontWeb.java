@@ -45,6 +45,14 @@ public class FrontWeb {
         return "redirect:/login";
     }
 
+    //아이디 중복확인
+    @PostMapping("/check")
+    @ResponseBody
+    public boolean checkId(@RequestParam String loginId){
+        log.info("check :: {}", userRepository.existsByLoginId(loginId));
+        return userRepository.existsByLoginId(loginId);
+    }
+
     //비밀번호 변경
     @PostMapping("/find")
     public String update(@ModelAttribute User user, BindingResult errors, Model model,

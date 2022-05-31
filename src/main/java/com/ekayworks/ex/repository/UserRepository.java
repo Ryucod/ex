@@ -17,7 +17,6 @@ public interface UserRepository extends BaseRepository<User, Long> {
     @Query("select u.email from User u where u.email = ?1")
     String findAllEmail(String inputEmail);
 
-//    boolean existByEmail(String inputEmail);
-
+    boolean existsByLoginId(String loginId);
 
 }
